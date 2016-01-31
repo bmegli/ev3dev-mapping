@@ -23,5 +23,6 @@ Ip addresses are hardocoded. Laser duty cycle is argument to program (positive o
 - std=c++11 is for C++11 standard, requried by ev3dev library
 - D_GLIBCXX_USE_NANOSLEEP, I don't even remember now
 
-2. ev3dev.h and ev3dev.cpp were compatible with ev3-ev3dev-jessie-2015-09-13. For more recent kernel you may have to overwrite them with newer versions.
-3. Some paths to devices may not be valid in future ev3dev releases.
+
+* ev3dev.h and ev3dev.cpp were compatible with ev3-ev3dev-jessie-2015-09-13. For more recent kernel you may have to overwrite them with newer versions.
+* Some paths to devices may not be valid in future ev3dev releases.
