@@ -124,12 +124,14 @@ int InitLaser(struct xv11lidar_data *lidar_data, const char *tty, int laser_fram
 
 int CloseLaser(const struct xv11lidar_data *lidar_data)
 {
+	int error=SUCCESS;
+	
 	if(tcsetattr(lidar_data->fd, TCSAFLUSH, &lidar_data->old_io) < 0)
-		return TTY_ERROR;
+		error=TTY_ERROR;
 		
 	close(lidar_data->fd);
 	
-	return SUCCESS;
+	return error;
 }
 
 int ReadLaser(const struct xv11lidar_data *lidar_data, struct laser_frame *frame_data)
