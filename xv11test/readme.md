@@ -32,6 +32,6 @@ echo run-direct > /sys/class/tacho-motor/motor0/command
 ```
 - Stop the motor
 ```bash 
-echo stop /sys/class/tacho-motor/motor0/command
+echo stop > /sys/class/tacho-motor/motor0/command
 ```
 - You can get the output csv file to OpenOffice Calc/Excel or anything you want and plot the result 
