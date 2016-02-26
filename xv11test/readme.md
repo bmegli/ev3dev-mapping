@@ -8,7 +8,7 @@ The files xv11lidar.h and xv11lidar.c can be used as simple library to communica
 Assumptions made in instructions below:
 - hardware is connected as in http://www.ev3dev.org/docs/tutorials/using-xv11-lidar/
 - lidar data connector is connected to port 1
-- lidar motor interface is avaliable at /sys/class/tacho-motor/motor0 
+- lidar motor interface is avaliable at `/sys/class/tacho-motor/motor0`
 
 Instructions are for compiling the code directly on EV3 (get the files to EV3 and use ssh)
 
