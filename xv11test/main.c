@@ -21,10 +21,11 @@ void Usage();
 
 int main(int argc, char **argv)
 {	
-	int capture_frames=90, status;
+	const int capture_frames=90;
 	struct xv11lidar_data xv11_data;
 	struct laser_frame frames[capture_frames];
-		
+	int status;
+
 	if(argc!=2)	
 	{
 		Usage();
