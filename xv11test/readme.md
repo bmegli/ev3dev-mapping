@@ -19,8 +19,8 @@ Instructions are for compiling the code directly on EV3 (get the files to EV3 an
 ```
 - Spin the motor around 200-300 RPM CCW
 ```bash
-echo 40 /sys/class/tacho-motor/motor0/duty_cycle_sp
-echo run-direct /sys/class/tacho-motor/motor0/command
+echo 40 > /sys/class/tacho-motor/motor0/duty_cycle_sp
+echo run-direct > /sys/class/tacho-motor/motor0/command
 ```
 - Run xv11test
 ```bash
