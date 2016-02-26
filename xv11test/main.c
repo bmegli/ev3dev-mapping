@@ -35,9 +35,12 @@ int main(int argc, char **argv)
 	
 	status=InitLaser(&xv11_data, tty, capture_frames);
 	
-	if(status != SUCCESS)
+	if(status != SUCCESS)	
+	{
 		fprintf(stderr, "Laser initialization failed with status %d\n", status);
-		
+		return status;
+	}
+			
 	status=ReadLaser(&xv11_data, frames);
 	
 	if(status != SUCCESS)

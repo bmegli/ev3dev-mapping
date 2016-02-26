@@ -17,18 +17,10 @@
 #include <termios.h> //struct termios, tcgetattr, tcsetattr, cfsetispeed, tcflush
 #include <fcntl.h> //file open flags
 #include <stdlib.h> //exit
-#include <stdio.h> //perror
+#include <stdio.h> //fprintf
 #include <unistd.h> //read, close
 #include <errno.h> //errno
 #include <string.h> //memcpy
-
-/*
-void DieNow(const char *s)
-{
-    perror(s);
-    exit(1);
-}
-*/
 
 uint16_t Checksum(const uint8_t data[20])
 {
@@ -53,8 +45,7 @@ int SynchronizeLaser(int fd, int laser_frames_per_read)
 
 	if(tcflush(fd, TCIOFLUSH)!=0)
 		return TTY_ERROR;
-		//DieNow("Laser synchronization failed (tcflush)");
-	
+
 	while(1)
 	{
 		if (read(fd,&c,1)>0)
@@ -68,18 +59,16 @@ int SynchronizeLaser(int fd, int laser_frames_per_read)
 				//discard 360 degree scan (90 frames with 22 bytes)
 				for(i=0;i<20 + 22*89;++i) 
 					if (read(fd,&c,1)<0)
-						return TTY_ERROR;
-						//DieNow("Laser synchroznization failed (21 bytes discard)\n");
+						return TTY_ERROR;						
+					
 		
 				struct termios io;
-				if(tcgetattr(fd, &io) < 0)
+				if(tcgetattr(fd, &io) < 0)				
 					return TTY_ERROR;
-					//DieNow("tcgetattr(fd, &io)");
-			
+							
 				io.c_cc[VMIN]=sizeof(struct laser_frame)*laser_frames_per_read; 
 				if(tcsetattr(fd, TCSANOW, &io) < 0)
 					return TTY_ERROR;
-					//DieNow("tcsetattr(fd, TCSANOW, &io)");
 		
 				break;
 			}	
@@ -92,16 +81,18 @@ int SynchronizeLaser(int fd, int laser_frames_per_read)
 
 int InitLaser(struct xv11lidar_data *lidar_data, const char *tty, int laser_frames_per_read)
 {
-	int fd=0;
+	int error;
 	struct termios io;
+	lidar_data->data=NULL;
 
-	if ((fd=open(tty, O_RDONLY))==-1)
+	if ((lidar_data->fd=open(tty, O_RDONLY))==-1)
 		return TTY_ERROR;
-		//DieNow("open(tty, O_RDONLY)");
 	
-	if(tcgetattr(fd, &lidar_data->old_io) < 0)
-		return TTY_ERROR;
-		//DieNow("tcgetattr(fd, &old_io)");
+	if(tcgetattr(lidar_data->fd, &lidar_data->old_io) < 0)
+	{
+		close(lidar_data->fd);
+		return TTY_ERROR;		
+	}
 			
 	io.c_iflag=io.c_oflag=io.c_lflag=0;
 	io.c_cflag=CS8|CREAD|CLOCAL; //8 bit characters
@@ -110,34 +101,47 @@ int InitLaser(struct xv11lidar_data *lidar_data, const char *tty, int laser_fram
 	io.c_cc[VTIME]=0; //no timer
 	
 	if(cfsetispeed(&io, B115200) < 0 || cfsetospeed(&io, B115200) < 0)
+	{
+		close(lidar_data->fd);
+		return TTY_ERROR;		
+	}
+
+	if(tcsetattr(lidar_data->fd, TCSAFLUSH, &io) < 0)
+	{
+		close(lidar_data->fd);
 		return TTY_ERROR;
-		//DieNow("cfsetispeed(&io, B115200) < 0 || cfsetospeed(&io, B115200) < 0");
- 
-	if(tcsetattr(fd, TCSAFLUSH, &io) < 0)
-		return TTY_ERROR;
-		//DieNow("tcsetattr(fd, TCSAFLUSH, &io)");
-		
-	lidar_data->fd=fd;
+	}
+				
 	lidar_data->laser_frames_per_read=laser_frames_per_read;
-	return SynchronizeLaser(fd, laser_frames_per_read);
+		
+	error=SynchronizeLaser(lidar_data->fd, laser_frames_per_read);
+	if(error!=SUCCESS)
+		close(lidar_data->fd);
+	else if( (lidar_data->data=malloc(laser_frames_per_read*sizeof(struct laser_frame))) == 0)
+	{
+		close(lidar_data->fd);
+		return MEMORY_ERROR;
+	}
+	return error;
 }
 
-int CloseLaser(const struct xv11lidar_data *lidar_data)
+int CloseLaser(struct xv11lidar_data *lidar_data)
 {
 	int error=SUCCESS;
 	
 	if(tcsetattr(lidar_data->fd, TCSAFLUSH, &lidar_data->old_io) < 0)
 		error=TTY_ERROR;
-		
+	
+	free(lidar_data->data);
 	close(lidar_data->fd);
 	
 	return error;
 }
 
-int ReadLaser(const struct xv11lidar_data *lidar_data, struct laser_frame *frame_data)
+int ReadLaser(struct xv11lidar_data *lidar_data, struct laser_frame *frame_data)
 {
 	const size_t total_read_size=sizeof(struct laser_frame)*lidar_data->laser_frames_per_read;
-	uint8_t data[total_read_size]; 
+	uint8_t *data=lidar_data->data; 
 	size_t bytes_read=0;
 	int status=0;
 	int i;
@@ -145,31 +149,22 @@ int ReadLaser(const struct xv11lidar_data *lidar_data, struct laser_frame *frame
 	while( bytes_read < total_read_size )
 	{
 		if( (status=read(lidar_data->fd,data+bytes_read,total_read_size-bytes_read))<0 )
-		{
-			//if(errno==EINTR) //interrupted by signal
-				//return; //0
 			return TTY_ERROR;
-			//DieNow("status=read(fd,data+bytes_read,total_read_size-bytes_read))<0");
-		}
 		else if(status==0)
 			return TTY_ERROR;
-			//DieNow("status==0, read no bytes?\n");
 			
 		bytes_read+=status;
 	}
 
-	
 	memcpy(frame_data, data, total_read_size);
 	
 	for(i=0;i<lidar_data->laser_frames_per_read;++i)
 	{
 		if(Checksum(data+i*sizeof(struct laser_frame))!=frame_data[i].checksum)
-		{
 			fprintf(stderr, " CRCFAIL ");			
-		}
+		
 		if(frame_data[i].start!=0xFA)
 			return SYNCHRONIZATION_ERROR;
-			//DieNow("Synchronization lost!\n");
 	}
 	return SUCCESS; 
 }

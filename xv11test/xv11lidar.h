@@ -18,7 +18,7 @@
 #include <termios.h> //termios
 
 //return value for all the functions
-enum xv11_status {SUCCESS=0, SYNCHRONIZATION_ERROR, TTY_ERROR};
+enum xv11_status {SUCCESS=0, SYNCHRONIZATION_ERROR, TTY_ERROR, MEMORY_ERROR};
 
 //internal data used by the functions
 struct xv11lidar_data
@@ -26,6 +26,7 @@ struct xv11lidar_data
 	int fd;
 	struct termios old_io;
 	int laser_frames_per_read;
+	uint8_t *data;
 };
 
 //single angle reading
@@ -57,7 +58,8 @@ struct laser_frame
 * returns:
 * xv11_status.SUCCESS (0) on success
 * xv11_status.TTY_ERROR (2) on failure
-*
+* xv11_status.MEMORY_ERROR (3) on memory allocation failure
+* 
 * preconditions:
 * -lidar spinning CCW at around 300 RPM
 * -lidar uart reachable at tty 
@@ -77,7 +79,7 @@ int InitLaser(struct xv11lidar_data *lidar_data, const char *tty, int laser_fram
 * preconditions:
 * -lidar initialized InitLaser
 */
-int CloseLaser(const struct xv11lidar_data *lidar_data);
+int CloseLaser(struct xv11lidar_data *lidar_data);
 
 /* Reads from the lidar tty the number of frames configured during initialization
  * parameters:
@@ -94,4 +96,4 @@ int CloseLaser(const struct xv11lidar_data *lidar_data);
  * preconditions:
  * -lidar initialized with InitLaser
  */
-int ReadLaser(const struct xv11lidar_data *lidar_data, struct laser_frame *frame_data);
+int ReadLaser(struct xv11lidar_data *lidar_data, struct laser_frame *frame_data);
