@@ -20,7 +20,7 @@ echo other-uart > /sys/class/lego-port/port0/mode
 3. Spin the motor around 200-300 RPM CCW
 ```bash
 echo 40 /sys/class/tacho-motor/motor0/duty_cycle_sp
-echo run-forever /sys/class/tacho-motor/motor0/command
+echo run-direct /sys/class/tacho-motor/motor0/command
 ```
 4. Run xv11test
 ```bash
