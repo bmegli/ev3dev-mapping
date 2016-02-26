@@ -3,10 +3,14 @@
 This is code for XV11 lidar test. The test outputs semicolon separated distance data for angles 0-359.
 The output can be redirected to file, transfered to PC and plotted.
 
+The files xv11lidar.h and xv11lidar.c can be used as simple library to communicate with the lidar.
+
 Assumptions made in instructions below:
 - hardware is connected as in http://www.ev3dev.org/docs/tutorials/using-xv11-lidar/
-- lidar data connector is connected to port 1 
+- lidar data connector is connected to port 1
 - lidar motor interface is avaliable at /sys/class/tacho-motor/motor0 
+
+Instructions are for compiling the code directly on EV3 (get the files to EV3 and use ssh)
 
 1. Compile the code - enter directory and type `make`
 2. Put the port in `other-uart` mode
