@@ -14,7 +14,7 @@ The files xv11lidar.h and xv11lidar.c can also be used as a simple library to co
 - lidar data connector is connected to port 1
 - lidar motor interface is avaliable at `/sys/class/tacho-motor/motor0`
 
-### Building the xv11 test
+### Building the xv11test
 
 Instructions are for compiling the code directly on EV3 (get the files to EV3 and use ssh)
 
