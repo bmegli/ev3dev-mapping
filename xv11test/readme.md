@@ -16,6 +16,11 @@ Assumptions made in instructions below:
 
 Instructions are for compiling the code directly on EV3 (get the files to EV3 and use ssh)
 
+- Get the build system (or just get the gcc and make package instead)
+```bash
+sudo apt-get update
+sudo apt-get install build-essential
+```
 - Compile the code - enter directory and type `make`
 - Put the port in `other-uart` mode
 ```bash
