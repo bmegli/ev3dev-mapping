@@ -24,13 +24,13 @@ sudo apt-get update
 sudo apt-get install build-essential
 ```
 - Compile the code - enter directory and type `make`
+
+### Running the test
+
 - Put the port in `other-uart` mode
 ```bash
  echo other-uart > /sys/class/lego-port/port0/mode
 ```
-
-### Running the test
-
 - Spin the motor around 200-300 RPM CCW
 ```bash
 echo 40 > /sys/class/tacho-motor/motor0/duty_cycle_sp
