@@ -9,10 +9,12 @@ The files xv11lidar.h and xv11lidar.c can also be used as a simple library to co
 
 ## LIDAR test
 
-Assumptions made in instructions below:
+### Instructions Assumptions 
 - hardware is connected as in http://www.ev3dev.org/docs/tutorials/using-xv11-lidar/
 - lidar data connector is connected to port 1
 - lidar motor interface is avaliable at `/sys/class/tacho-motor/motor0`
+
+### Building the xv11 test
 
 Instructions are for compiling the code directly on EV3 (get the files to EV3 and use ssh)
 
@@ -26,6 +28,9 @@ sudo apt-get install build-essential
 ```bash
  echo other-uart > /sys/class/lego-port/port0/mode
 ```
+
+### Running the test
+
 - Spin the motor around 200-300 RPM CCW
 ```bash
 echo 40 > /sys/class/tacho-motor/motor0/duty_cycle_sp
@@ -44,7 +49,7 @@ echo run-direct > /sys/class/tacho-motor/motor0/command
 echo stop > /sys/class/tacho-motor/motor0/command
 ```
 
-## Results plot
+### Results plot
 
 The file `xv11plot.ods` is Open Document Spreadsheet with the formulas for converting xv11test angle/distance output to 2D points graph.
 You can open `xv11plot.ods` in OpenOffice, Microsoft Excel or any other software supporting Open Document Spreadsheets.
