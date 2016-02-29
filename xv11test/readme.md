@@ -52,11 +52,11 @@ echo stop > /sys/class/tacho-motor/motor0/command
 ### Results plot
 
 The file `xv11plot.ods` is Open Document Spreadsheet with the formulas for converting xv11test angle/distance output to 2D points graph.
-You can open `xv11plot.ods` in OpenOffice, Microsoft Excel or any other software supporting Open Document Spreadsheets.
+You can open `xv11plot.ods` in OpenOffice Calc, Microsoft Excel or any other software supporting Open Document Spreadsheets.
 
 To make a plot:
 - Get the xv11test output `distances.csv` file to your PC
-- Open `xv11plot.ods` in software of your choice (e.g. OpenOffice, Microsoft Excel, ...) 
+- Open `xv11plot.ods` in software of your choice (e.g. OpenOffice Calc, Microsoft Excel, ...) 
 - Copy your result from `distances.csv` to lines in `xv11plot.ods` where it says so
 
 See the plot and note how to convert LIDAR angle/distance output and apply geometric correction in the spreadsheet
