@@ -1,9 +1,13 @@
 # XV11 LIDAR test
 
+## Overview
+
 This is code for XV11 lidar test. The test outputs semicolon separated distance data for angles 0-359.
 The output can be redirected to file, transfered to PC and plotted.
 
-The files xv11lidar.h and xv11lidar.c can be used as simple library to communicate with the lidar.
+The files xv11lidar.h and xv11lidar.c can also be used as a simple library to communicate with the lidar.
+
+## LIDAR test
 
 Assumptions made in instructions below:
 - hardware is connected as in http://www.ev3dev.org/docs/tutorials/using-xv11-lidar/
@@ -34,4 +38,16 @@ echo run-direct > /sys/class/tacho-motor/motor0/command
 ```bash 
 echo stop > /sys/class/tacho-motor/motor0/command
 ```
-- You can get the output csv file to OpenOffice Calc/Excel or anything you want and plot the result 
+
+## Results plot
+
+The file `xv11plot.ods` is Open Document Spreadsheet with the formulas for converting xv11test angle/distance output to 2D points graph.
+You can open `xv11plot.ods` in OpenOffice, Microsoft Excel or any other software supporting Open Document Spreadsheets.
+
+To make a plot:
+- Get the xv11test output `distances.csv` file to your PC
+- Open `xv11plot.ods` in software of your choice (e.g. OpenOffice, Microsoft Excel, ...) 
+- Copy your result from `distances.csv` to lines in `xv11plot.ods` where it says so
+- See the plot
+- See how to convert LIDAR angle/distance output and apply geometric correction in the spreadsheet
+
