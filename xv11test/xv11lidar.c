@@ -117,7 +117,7 @@ int InitLaser(struct xv11lidar_data *lidar_data, const char *tty, int laser_fram
 	error=SynchronizeLaser(lidar_data->fd, laser_frames_per_read);
 	if(error!=SUCCESS)
 		close(lidar_data->fd);
-	else if( (lidar_data->data=malloc(laser_frames_per_read*sizeof(struct laser_frame))) == 0)
+	else if( (lidar_data->data=(uint8_t*)malloc(laser_frames_per_read*sizeof(struct laser_frame))) == 0)
 	{
 		close(lidar_data->fd);
 		return MEMORY_ERROR;
