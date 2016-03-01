@@ -21,7 +21,7 @@ void Usage();
 
 int main(int argc, char **argv)
 {	
-	const int capture_frames=90;
+	const int capture_frames=90; //90 frames each with 4 angles read - 360 degree read
 	struct xv11lidar_data xv11_data;
 	struct laser_frame frames[capture_frames];
 	int status;
