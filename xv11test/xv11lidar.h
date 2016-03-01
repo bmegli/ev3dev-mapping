@@ -59,7 +59,7 @@ struct laser_frame
 * parameters:
 * lidar_data - internal data 
 * tty - the path to lidar tty
-* laser_frames_per_read - configure tty to rad that much frames per read, each frame has 4 degree scan
+* laser_frames_per_read - configure tty to read that much frames per read, each frame has 4 degree scan
 * 
 * returns:
 * xv11_status.SUCCESS (0) on success
