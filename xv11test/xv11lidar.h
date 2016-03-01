@@ -88,6 +88,8 @@ int InitLaser(struct xv11lidar_data *lidar_data, const char *tty, int laser_fram
 int CloseLaser(struct xv11lidar_data *lidar_data);
 
 /* Reads from the lidar tty the number of frames configured during initialization
+ * This is a blocking function
+ * 
  * parameters:
  * lidar_data - internal data
  * frame_data - a pointer to array that is big enough to store laser_frames_per_read configured during InitLaser

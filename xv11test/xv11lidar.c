@@ -48,6 +48,13 @@ uint16_t Checksum(const uint8_t data[20])
 	return checksum & 0x7FFF;
 }
 
+/*
+ * Flushes the TTY buffer so that we synchronize on new data
+ * Waits for 0xFA byte (starting laser_frame) followed by 0xA0 which is angle 0-3 frame
+ * Discards the rest 20 bytes of frame and the next 89 frames so that the next read will 
+ * start reading at frame with 0-3 angles. 
+ * Finally sets the termios to return the data in largest possible chunks (termios.c_cc[VMIN])
+ */
 int SynchronizeLaser(int fd, int laser_frames_per_read)
 {		
 	uint8_t c=0;
@@ -62,18 +69,19 @@ int SynchronizeLaser(int fd, int laser_frames_per_read)
 	{
 		if (read(fd,&c,1)>0)
 		{
+			//wait for frame start
 			if(c==0xFA)
 			{
 				//wait for angle 0
 				if (read(fd,&c,1)>0 && c!=0xA0)
 					continue;
 				
-				//discard 360 degree scan (90 frames with 22 bytes)
+				//discard 360 degree scan (next 20 bytes of frame 0 and 89 frames with 22 bytes)
 				for(i=0;i<20 + 22*89;++i) 
 					if (read(fd,&c,1)<0)
 						return TTY_ERROR;						
 					
-		
+				//get the termios and set it to return data in largest possible chunks
 				struct termios io;
 				if(tcgetattr(fd, &io) < 0)				
 					return TTY_ERROR;
@@ -95,6 +103,13 @@ int SynchronizeLaser(int fd, int laser_frames_per_read)
 	return SUCCESS;
 }
 
+/*
+ * Open the terminal
+ * Save its original settings in lidar_data->old_io
+ * Set terminal for raw byte input single byte at a time at 115200 speed
+ * Synchronize with the laser
+ * Alloc internal buffer for laser readings
+ */
 int InitLaser(struct xv11lidar_data *lidar_data, const char *tty, int laser_frames_per_read)
 {
 	int error;
@@ -141,6 +156,11 @@ int InitLaser(struct xv11lidar_data *lidar_data, const char *tty, int laser_fram
 	return error;
 }
 
+/*
+ * Restore original terminal settings
+ * Free the allocated buffer for laser readings
+ * Close the terminal
+ */
 int CloseLaser(struct xv11lidar_data *lidar_data)
 {
 	int error=SUCCESS;
@@ -154,6 +174,10 @@ int CloseLaser(struct xv11lidar_data *lidar_data)
 	return error;
 }
 
+/*
+ * Read from LIDAR until requested number of frames is read or error occurs
+ * 
+ */
 int ReadLaser(struct xv11lidar_data *lidar_data, struct laser_frame *frame_data)
 {
 	const size_t total_read_size=sizeof(struct laser_frame)*lidar_data->laser_frames_per_read;
