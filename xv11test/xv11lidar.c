@@ -21,7 +21,17 @@
 #include <unistd.h> //read, close
 #include <errno.h> //errno
 #include <string.h> //memcpy
+#include <limits.h> //UCHAR_MAX
 
+/*
+ *  This function calculates the checksum from the first 20 bytes of frame returned by the LIDAR
+ *  You can expose this function (in xvlidar.h) and compare its value with laser_frame.checksum
+ *  Currently the ReadLaser implementation only outputs CRCFAIL
+ *  to stderr when the checksum doesn't match the expected value
+ *  A lot of checksum failures can indicate problem with reading the data (imperfect soldering, etc)
+ *  or that the synchronization was lost and we are not reading frames correctly.
+ *  Synchronization could be lost for example when not reading the data long and buffer overflow happens
+ */
 uint16_t Checksum(const uint8_t data[20])
 {
 	uint32_t chk32=0;
@@ -42,7 +52,9 @@ int SynchronizeLaser(int fd, int laser_frames_per_read)
 {		
 	uint8_t c=0;
 	int i;
-
+		
+	//flush the current TTY data so that buffers are clean
+	//The LIDAR may have been spinning for a while
 	if(tcflush(fd, TCIOFLUSH)!=0)
 		return TTY_ERROR;
 
@@ -66,7 +78,11 @@ int SynchronizeLaser(int fd, int laser_frames_per_read)
 				if(tcgetattr(fd, &io) < 0)				
 					return TTY_ERROR;
 							
-				io.c_cc[VMIN]=sizeof(struct laser_frame)*laser_frames_per_read; 
+				if(laser_frames_per_read*sizeof(struct laser_frame) <= UCHAR_MAX)					
+					io.c_cc[VMIN]=laser_frames_per_read*sizeof(struct laser_frame); 
+				else
+					io.c_cc[VMIN]=11*sizeof(struct laser_frame); //11*22=242 which is the largest possible value <= UCHAR_MAX 	
+					
 				if(tcsetattr(fd, TCSANOW, &io) < 0)
 					return TTY_ERROR;
 		

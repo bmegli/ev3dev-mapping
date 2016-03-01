@@ -29,13 +29,17 @@ struct xv11lidar_data
 	uint8_t *data;
 };
 
+/*	For complete information on LIDAR data format see: 
+ *	http://xv11hacking.wikispaces.com/LIDAR+Sensor
+ *  LIDAR returns data in frames of 4 consecutive readings (angles)
+*/
 //single angle reading
 struct laser_reading
 {
-	unsigned int distance : 14;
-	unsigned int strength_warning : 1;
-	unsigned int invalid_data : 1;	
-	uint16_t signal_strength;
+	unsigned int distance : 14; //distance or error code when invalid_data flag is set
+	unsigned int strength_warning : 1; //flag indicating that reported signal strength is lower then expected
+	unsigned int invalid_data : 1; //flag indicating that distance could not be calculated	
+	uint16_t signal_strength; //received signal strength 
 } __attribute__((packed));
 
 //single frame read from lidar
@@ -44,12 +48,14 @@ struct laser_frame
 	uint8_t start; //fixed 0xFA can be used for synchronization
 	uint8_t index; //(index-0xA0)*4 is the angle for readings[0] (+1,2,3 for consecutive readings)
 	uint16_t speed; //divide by 64 to get speed in rpm
-	struct laser_reading readings[4];
+	struct laser_reading readings[4]; //readings for 4 consecutive angles
 	uint16_t checksum; //if you need it in xv11lidar.c there is a function for calculating the checksum, compare with this value
 	
 } __attribute__((packed));
 
 /* Sets terminal to the appropriate mode and synchrnonizes with the device
+ * If this function fails there is no need to call CloseLaser
+ * 
 * parameters:
 * lidar_data - internal data 
 * tty - the path to lidar tty
