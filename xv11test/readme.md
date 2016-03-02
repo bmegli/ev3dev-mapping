@@ -59,5 +59,7 @@ To make a plot:
 - Open `xv11plot.ods` in software of your choice (e.g. OpenOffice Calc, Microsoft Excel, ...) 
 - Copy your result from `distances.csv` to lines in `xv11plot.ods` where it says so
 
-See the plot and note how to convert LIDAR angle/distance output and apply geometric correction in the spreadsheet
+See your own plot and note how to convert LIDAR angle/distance output and apply geometric correction in the spreadsheet
 
+Sample scan plot taken in cardboard box 
+![Alt text](/img/xv11plot.png "XV11 scan sample image")
