@@ -61,6 +61,6 @@ To make a plot:
 
 See your own plot and note how to convert LIDAR angle/distance output and apply geometric correction in the spreadsheet
 
-### Example - 910 mm x 600 mm cardboard box 
+### Example Plot
 
 ![Alt text](/img/xv11plot.png "XV11 scan sample image")
