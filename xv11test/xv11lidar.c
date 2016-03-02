@@ -25,7 +25,7 @@
 
 /*
  *  This function calculates the checksum from the first 20 bytes of frame returned by the LIDAR
- *  You can expose this function (in xvlidar.h) and compare its value with laser_frame.checksum
+ *  You can expose this function (in xv11lidar.h) and compare its value with laser_frame.checksum
  *  Currently the ReadLaser implementation only outputs CRCFAIL
  *  to stderr when the checksum doesn't match the expected value
  *  A lot of checksum failures can indicate problem with reading the data (imperfect soldering, etc)
