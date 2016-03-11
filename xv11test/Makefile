@@ -1,7 +1,7 @@
 TARGET = xv11test
 LIBS = 
 CC = gcc
-CFLAGS = -g -Wall
+CFLAGS = -Wall
 
 .PHONY: default all clean
 
