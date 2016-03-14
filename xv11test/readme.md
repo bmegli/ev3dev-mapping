@@ -68,9 +68,11 @@ See your own plot and note how to convert LIDAR angle/distance output and apply 
 
 ![Alt text](/img/xv11plot.png "XV11 scan sample image")
 
-### Getting binary data
+### Working with binary data
 
-If you don't feel comfortable with C code or don't want to write uart communication code, you can run xv11test with -raw argument and pipe its output to your application.
+If you are working in C/C++ you can use `xv11lidar.h`/`xv11lidar.c` and functions `InitLaser`, `ReadLaser` (in a loop?), `CloseLaser`.
+
+If you don't feel comfortable with C code or don't want to write uart communication code, you can run xv11test with -raw argument and pipe its output to your application in any language.
 
 The syntax is following:
 ```bash
