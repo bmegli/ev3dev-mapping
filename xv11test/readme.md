@@ -78,9 +78,9 @@ xv11test terminal_device -raw [frames_per_read] [frames_limit]
 ```
 
 Where:
--`terminal_device` is path to tty device (e.g. `/dev/tty_in1`)
--`frames_per_read` is optional number of LIDAR frames per single read/write, 15 by default (60 degrees)
--`frames_limit` is optional limit for number of frames, 90 by default (360 degrees), use 0 to get continuous binary data
+- `terminal_device` is path to tty device (e.g. `/dev/tty_in1`)
+- `frames_per_read` is optional number of LIDAR frames per single read/write, 15 by default (60 degrees)
+- `frames_limit` is optional limit for number of frames, 90 by default (360 degrees), use 0 to get continuous binary data
 
 By piping xv11test with -raw argument to your application you can read binary LIDAR data from your standard input. 
 
