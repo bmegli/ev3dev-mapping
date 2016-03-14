@@ -6,7 +6,7 @@ This is code for XV11 LIDAR test. The test outputs semicolon separated distance 
 The output can be redirected to file, transferred to PC and plotted.
 
 Alternatively, xv11test can be called with -raw argument to output synchronized binary data.
-You can pipe the data to your application written in any language (effectively getting LIDAR data on you standard input)
+You can pipe the data to your application written in any language (effectively getting LIDAR data on you standard input).
 
 Finally, the files xv11lidar.h and xv11lidar.c can also be used as a simple C library to communicate with the LIDAR.
 
