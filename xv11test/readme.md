@@ -89,7 +89,7 @@ Assumptions for those use cases are the same as before (port in `other-uart` mod
 #### Example 1 - 360 degree scan piped to other_program
 
 ```bash
-./xv11test /dev/tty_in1 -raw | other_program
+./xv11test /dev/tty_in1 -raw | ./other_program
 ```
 
 Or the same explicitly - read/write in chunks of 15 frames, limit to 90 frames (each 4 degrees):
