@@ -74,7 +74,7 @@ If you don't feel comfortable with C code or don't want to write uart communicat
 
 The syntax is following:
 ```bash
-./xv11test terminal_device -raw [frames_per_read] [frames_limit]
+xv11test terminal_device -raw [frames_per_read] [frames_limit]
 ```
 
 Where:
