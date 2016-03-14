@@ -95,7 +95,7 @@ Assumptions for those use cases are the same as before (port in `other-uart` mod
 Or the same explicitly - read/write in chunks of 15 frames, limit to 90 frames (each 4 degrees):
 
 ```bash
-./xv11test /dev/tty_in1 -raw 15 90 | other_program
+./xv11test /dev/tty_in1 -raw 15 90 | ./other_program
 ```
 
 #### Example 2 - 360 degree scan redirected to binary file
@@ -108,12 +108,12 @@ Or the same explicitly - read/write in chunks of 15 frames, limit to 90 frames (
 
 ```bash
 ./xv11test /dev/tty_in1 -raw > scan360.bin
-other_program < scan360.bin
+./other_program < scan360.bin
 ```
 
 #### Example 4 - continuous binary data piped to other_program
 
 ```bash
-./xv11test /dev/tty_in1 -raw 15 0 | other_program
+./xv11test /dev/tty_in1 -raw 15 0 | ./other_program
 ```
 
