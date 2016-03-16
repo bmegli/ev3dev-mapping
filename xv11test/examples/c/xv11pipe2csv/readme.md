@@ -44,11 +44,11 @@ echo run-direct > /sys/class/tacho-motor/motor0/command
 ```
 - Pipe xv11test -raw output to xv11pipe2csv
 ```bash
-./xv11test /dev/tty_in1 -raw | xv11pipe2csv
+./xv11test /dev/tty_in1 -raw | ./xv11pipe2csv
 ```
 - Pipe xv11test -raw output to xv11pipe2csv and redirect to file
 ```bash
-./xv11test /dev/tty_in1 -raw | xv11pipe2csv > distances.csv
+./xv11test /dev/tty_in1 -raw | ./xv11pipe2csv > distances.csv
 ```
 - Stop the motor
 ```bash 
