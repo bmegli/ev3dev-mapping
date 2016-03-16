@@ -45,7 +45,7 @@ This will also work on Windows from Mono Command Prompt provided that you have m
 
 `CSHARP = csc #for Microsoft Visual C# Compiler (use from Developer Command Prompt for Visual Studio)`
 
-uncomment the line:
+- uncomment the line:
 
 `#CSHARP = mcs #for Mono, uncomment if needed (use from Mono Command Prompt)`
 
