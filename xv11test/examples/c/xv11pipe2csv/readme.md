@@ -19,7 +19,7 @@ It will output semicolon separated distances for angles 0-359.
 - xv11test was compiled and is ready to use
 - both xv11test and xv11pipe2csv are in the same directory
 
-### Building xv11pipe2csv.exe
+### Building xv11pipe2csv
 
 Instructions are for compiling the code directly on EV3 (get the files to EV3 and use ssh)
 
