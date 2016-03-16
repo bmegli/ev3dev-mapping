@@ -74,7 +74,9 @@ If you are working in C/C++ you can use `xv11lidar.h`/`xv11lidar.c` and function
 
 If you don't feel comfortable with C code or don't want to write uart communication code, you can run xv11test with -raw argument and pipe its output to your application in any language.
 
-The syntax is following:
+See also `examples` subdirectory.
+
+The xv11test syntax to get synchronized binary output is following:
 ```bash
 xv11test terminal_device -raw [frames_per_read] [frames_limit]
 ```
