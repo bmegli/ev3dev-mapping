@@ -43,7 +43,7 @@ sudo apt-get install build-essential
 echo 40 > /sys/class/tacho-motor/motor0/duty_cycle_sp
 echo run-direct > /sys/class/tacho-motor/motor0/command
 ```
-- Pipe xv11test -raw xxyy 0 output to xv11pipe-loop
+- Pipe xv11test -raw xx 0 output to xv11pipe-loop
 ```bash
 ./xv11test /dev/tty_in1 -raw 15 0 | ./xv11pipe-loop
 ```
