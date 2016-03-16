@@ -91,8 +91,7 @@ sudo apt-get update
 sudo apt-get install mono-runtime
 ```
 
-`mono-runtime` package is enough to run the examples.
-If you run into missing assemblies problems (with own code) get `mono-complete` package:
+`mono-runtime` package is enough to run the examples but if you run into missing assemblies problems (with own code) get `mono-complete` package:
 
 ```bash
 sudo apt-get update
