@@ -1,4 +1,4 @@
-# xv11pipe2csv
+# xv11pipe-loop
 
 ## Overview
 
