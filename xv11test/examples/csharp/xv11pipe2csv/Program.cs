@@ -24,11 +24,11 @@
  * -lego port put in other-uart mode
  * -lidar spinning CCW at around 200-300 rpm
  * 
- * It should be invokded with xv11test pipeline (example):
+ * It should be invoked with xv11test pipeline (example):
  * 
  * ./xv11test /dev/tty_in1 -raw | mono xv11pipe2csv.exe
  * 
- * See Usage() function for syntax details (or run the program without arguments)
+ * See Usage() function for syntax details (or run the program with any arguments)
  */
 
 
