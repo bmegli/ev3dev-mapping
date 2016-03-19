@@ -36,9 +36,9 @@ Assumption: you have Visual Studio (e.g. VS Express 2015 for Desktop) installed.
 ```bash
 nmake
 ```
-#### Building on Linux with Mono and make
+#### Building on with Mono and make
 
-Assumption: you have Mono installed
+Assumption: you have Mono installed and make available
 This will also work on Windows from Mono Command Prompt provided that you have make in the path
 
 - cd to directory with xv11pipe-loop source
