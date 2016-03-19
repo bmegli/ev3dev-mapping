@@ -39,8 +39,8 @@ sudo apt-get install default-jre
 Instructions are for compiling the code on EV3
 
 The makefile will also work on your PC provided that:
--you have `javac`, `jar` and `make` tools in your path  
--the jdk version on your PC matches the jre/jdk on EV3 (alternatively modify makefile to cross-compile)
+- you have `javac`, `jar` and `make` tools in your path  
+- the jdk version on your PC matches the jre/jdk on EV3 (alternatively modify makefile to cross-compile)
 
 #### Building on EV3
 
