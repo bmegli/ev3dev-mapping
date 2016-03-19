@@ -7,6 +7,7 @@ The output can be redirected to file, transferred to PC and plotted.
 
 Alternatively, xv11test can be called with -raw argument to output synchronized binary data.
 You can pipe the data to your application written in any language (effectively getting LIDAR data on you standard input).
+See `examples` directory for C, C# and Java code.
 
 Finally, the files xv11lidar.h and xv11lidar.c can also be used as a simple C library to communicate with the LIDAR.
 
@@ -74,7 +75,7 @@ If you are working in C/C++ you can use `xv11lidar.h`/`xv11lidar.c` and function
 
 If you don't feel comfortable with C code or don't want to write uart communication code, you can run xv11test with -raw argument and pipe its output to your application in any language.
 
-See also `examples` subdirectory.
+See also `examples` subdirectory for C, C# and Java examples.
 
 The xv11test syntax to get synchronized binary output is following:
 ```bash
