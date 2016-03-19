@@ -3,19 +3,17 @@ JC = javac
 JAR = jar 
 JARFLAGS = cfm
 
-.PHONY: default all clean
-
-XV11PIPELOOP_CLASS = com\bmegli\xv11lidar\examples\xv11pipeloop\Main.class
-XV11PIPELOOP_JAVA = src\com\bmegli\xv11lidar\examples\xv11pipeloop\Main.java 
+XV11PIPELOOP_CLASS = com/bmegli/xv11lidar/examples/xv11pipeloop/Main.class
+XV11PIPELOOP_JAVA = src/com/bmegli/xv11lidar/examples/xv11pipeloop/Main.java 
 XV11PIPELOOP_JAR = xv11pipe-loop.jar
 XV11PIPELOOP_MANIFEST = xv11pipe-loop-manifest
 
-LASERREADING_CLASS = com\bmegli\xv11lidar\LaserReading.class
-LASERREADING_JAVA = src\com\bmegli\xv11lidar\LaserReading.java
-LASERFRAME_CLASS = com\bmegli\xv11lidar\LaserFrame.class
-LASERFRAME_JAVA = src\com\bmegli\xv11lidar\LaserFrame.java
-LASERSCANNER_CLASS = com\bmegli\xv11lidar\LaserScanner.class
-LASERSCANNER_JAVA = src\com\bmegli\xv11lidar\LaserScanner.java
+LASERREADING_CLASS = com/bmegli/xv11lidar/LaserReading.class
+LASERREADING_JAVA = src/com/bmegli/xv11lidar/LaserReading.java
+LASERFRAME_CLASS = com/bmegli/xv11lidar/LaserFrame.class
+LASERFRAME_JAVA = src/com/bmegli/xv11lidar/LaserFrame.java
+LASERSCANNER_CLASS = com/bmegli/xv11lidar/LaserScanner.class
+LASERSCANNER_JAVA = src/com/bmegli/xv11lidar/LaserScanner.java
 
 ALL_CLASSES = $(XV11PIPELOOP_CLASS) $(LASERSCANNER_CLASS) $(LASERFRAME_CLASS) $(LASERREADING_CLASS)
 
