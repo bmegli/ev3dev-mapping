@@ -29,7 +29,7 @@
  * 
  * ./xv11test /dev/tty_in1 -raw 15 0 | mono xv11pipe-loop.exe
  * 
- * See Usage() function for syntax details (or run the program without arguments)
+ * See Usage() function for syntax details (or run the program with any arguments)
  */
 
 
