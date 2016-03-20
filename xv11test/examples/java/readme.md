@@ -70,6 +70,7 @@ echo run-direct > /sys/class/tacho-motor/motor0/command
 ```bash
 ./xv11test /dev/tty_in1 -raw 15 0 | java -jar xv11pipe-loop.jar
 ```
+- Stop the programs with ctrl+z
 - Stop the motor
 ```bash 
 echo stop > /sys/class/tacho-motor/motor0/command
