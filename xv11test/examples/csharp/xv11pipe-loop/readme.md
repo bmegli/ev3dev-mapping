@@ -115,6 +115,7 @@ echo run-direct > /sys/class/tacho-motor/motor0/command
 ```bash
 ./xv11test /dev/tty_in1 -raw 15 0 | mono xv11pipe-loop.exe
 ```
+- Stop the programs with ctrl + c
 - Stop the motor
 ```bash 
 echo stop > /sys/class/tacho-motor/motor0/command
