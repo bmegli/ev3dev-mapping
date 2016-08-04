@@ -21,6 +21,10 @@ A cross-platform real-time 3D spatial data visualization working with [ev3dev-ma
 
 A bunch of small programs feeding data to [ev3dev-mapping-ui](https://github.com/bmegli/ev3dev-mapping-ui)
 
+### [ev3dev-mapping-results](https://github.com/bmegli/ev3dev-mapping-results)
+
+Sample results from ev3dev-mapping with pipelines explained
+
 ### [ev3dev-mapping-abandoned](https://github.com/bmegli/ev3dev-mapping-abandoned)
 
-Abandoned unlicensed unsupported test code.
+Abandoned unlicensed and unsupported test code
