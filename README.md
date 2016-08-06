@@ -25,6 +25,10 @@ A bunch of small programs feeding data to [ev3dev-mapping-ui](https://github.com
 
 Sample results from ev3dev-mapping with pipelines explained
 
+### [ev3dev-mapping-ui-udp](https://github.com/bmegli/ev3dev-mapping-ui-udp)
+
+Optional submodule with recorded udp communication between [ev3dev-mapping-ui](https://github.com/bmegli/ev3dev-mapping-ui) and [ev3dev-mapping-modules](https://github.com/bmegli/ev3dev-mapping-modules).
+
 ### [ev3dev-mapping-abandoned](https://github.com/bmegli/ev3dev-mapping-abandoned)
 
 Abandoned unlicensed and unsupported test code
