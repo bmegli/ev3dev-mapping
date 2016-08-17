@@ -5,7 +5,7 @@ This repository points to various subprojecs of ev3dev-mapping project.
 
 ### [ev3dev-mapping web page](http://www.ev3dev.org/projects/2016/08/07/Mapping/)
 
-A project web-page with high level overview. This is the best starting point.
+A project web-page with high level overview. This is the best starting point
 
 ### [ev3dev-mapping-ui](https://github.com/bmegli/ev3dev-mapping-ui)
 
