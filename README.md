@@ -33,7 +33,9 @@ A C/C++ library for XV11 lidar communication
 
 ### [xv11lidar-test](https://github.com/bmegli/xv11lidar-test)
 
-A C program to test XV11 lidar also with possibility to redirect binary-synchronized output to other programs.
-Some spreadsheets explaining how to apply geometric correction.
-C/C#/Java examples.
+A C program to test XV11 lidar, spreadsheets explaining geometric correction, examples.
+
+### [wifi-scan](https://github.com/bmegli/wifi-scan)
+
+A small C/C++ library for monitoring signal strength of WiFi networks
 
