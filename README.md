@@ -37,5 +37,5 @@ A C program to test XV11 lidar, spreadsheets explaining geometric correction, ex
 
 ### [wifi-scan](https://github.com/bmegli/wifi-scan)
 
-A small C/C++ library for monitoring signal strength of WiFi networks
+A C/C++ library for monitoring signal strength of WiFi networks
 
