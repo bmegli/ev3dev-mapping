@@ -3,6 +3,10 @@ The ev3dev-mapping project meta repository
 
 This repository points to various subprojecs of ev3dev-mapping project.
 
+| UI  | Robot |
+|---|---|
+| ![Alt text](https://user-images.githubusercontent.com/9095769/28491647-2beeb06a-6ef5-11e7-930e-611803ae11e0.png "ev3dev-mapping-ui screenshot")  | ![Alt text](https://www.ev3dev.org/images/projects/2016-08-07-Mapping/robot-phaseII.jpg "ev3dev-mapping phaseII robot") |
+
 ### [ev3dev-mapping web page](http://www.ev3dev.org/projects/2016/08/07/Mapping/)
 
 A project web-page with high level overview. This is the best starting point
