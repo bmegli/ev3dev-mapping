@@ -43,3 +43,8 @@ A C program to test XV11 lidar, spreadsheets explaining geometric correction, ex
 
 A C/C++ library for monitoring signal strength of WiFi networks
 
+------------------------------------------------------------------------------------------------
+
+### [cave-crawler](https://github.com/bmegli/cave-crawler)
+
+The next level project meta repository
